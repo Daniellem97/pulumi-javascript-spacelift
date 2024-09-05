@@ -46,4 +46,12 @@ nohup python -m SimpleHTTPServer 80 &`;
         console.error("Error in stack setup: ", error);
         throw error; // Re-throw the error after logging
     }
+
+// Replace 'my-bucket-name' with the name of your existing S3 bucket
+const bucket = new aws.s3.Bucket("my-imported-bucket", {}, {
+    import: "testingimportdanielle1",  // The name of the existing S3 bucket to import
+});
+
+// Export the bucket name as a stack output
+exports.bucketName = bucket.id;
 })();
