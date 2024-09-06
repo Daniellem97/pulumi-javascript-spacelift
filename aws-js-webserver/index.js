@@ -1,5 +1,3 @@
-"use strict";
-
 const pulumi = require("@pulumi/pulumi");
 const aws = require("@pulumi/aws");
 
@@ -40,26 +38,7 @@ nohup python -m SimpleHTTPServer 80 &`;
             userData: userData, // Start a simple web server
         });
 
-        // Import the existing S3 bucket called 'testimportdanielle2' with its server-side encryption config
-        let s3Bucket = new aws.s3.Bucket("testimportdanielle2", {
-            bucket: "testimportdanielle2",  // Make sure the name matches exactly
-            serverSideEncryptionConfiguration: {
-                rule: {
-                    applyServerSideEncryptionByDefault: {
-                        sseAlgorithm: "AES256",  // Match the existing encryption setting
-                    }
-                }
-            }
-        }, {
-            import: "testimportdanielle2",  // Import the bucket by its name
-        });
-
-        // Use .apply() to safely access the bucket name, which is an Output<string>
-        s3Bucket.bucket.apply(bucketName => {
-            console.log(`Imported S3 bucket with name: ${bucketName}`);
-        });
-
-        // At this point, all resources have been created or imported successfully
+        // At this point, all resources have been created successfully
 
     } catch (error) {
         console.error("Error in stack setup: ", error);
