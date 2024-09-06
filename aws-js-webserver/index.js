@@ -39,7 +39,7 @@ nohup python -m SimpleHTTPServer 80 &`;
         });
 
         // At this point, all resources have been created successfully
-let s3Bucket = new aws.s3.Bucket("testimportdanielle2", {
+const s3Bucket = new aws.s3.Bucket("testimportdanielle2", {
     bucket: "testimportdanielle2",  // Specify the bucket name exactly
     serverSideEncryptionConfiguration: {
         rule: {
