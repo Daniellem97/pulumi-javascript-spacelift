@@ -39,6 +39,12 @@ nohup python -m SimpleHTTPServer 80 &`;
         });
 
         // At this point, all resources have been created successfully
+        // Import the existing S3 bucket called 'testimportdanielle2'
+        let s3Bucket = new aws.s3.Bucket("testimportdanielle2", {
+            bucket: "testimportdanielle2",  // Make sure the name matches exactly
+        }, {
+            import: "testimportdanielle2",  // Import the bucket by its name
+        });
 
     } catch (error) {
         console.error("Error in stack setup: ", error);
